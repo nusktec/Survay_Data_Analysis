@@ -68,6 +68,7 @@
             this.btn_manage.TabIndex = 2;
             this.btn_manage.Text = "Manage Data";
             this.btn_manage.UseVisualStyleBackColor = true;
+            this.btn_manage.Click += new System.EventHandler(this.btn_manage_Click);
             // 
             // mainPanel1
             // 

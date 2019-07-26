@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace Survey_Data_Analysis
 {
@@ -35,6 +36,20 @@ namespace Survey_Data_Analysis
                 WindowState = FormWindowState.Normal;
             }
             
+        }
+
+        private void btn_manage_Click(object sender, EventArgs e)
+        {
+            string input = Interaction.InputBox("Admin Area", "Enter Protected Password", "", -1, -1);
+            if (input == "admin")
+            {
+                //open management form
+                new FormManage().Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid password, try again !", "Password");
+            }
         }
     }
 }
