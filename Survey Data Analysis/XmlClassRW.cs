@@ -62,9 +62,16 @@ namespace Survey_Data_Analysis
         }
 
         //Reader
-        public void readXmlData()
+        public XmlDocument readXmlData()
         {
-
+            if (System.IO.File.Exists(fileName))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(fileName);
+                //assume it's loadedd
+                return doc;
+            }
+            return null;
         }
     }
 }

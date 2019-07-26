@@ -83,9 +83,9 @@
             // btn_close
             // 
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(1297, 31);
+            this.btn_close.Location = new System.Drawing.Point(1340, 31);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(53, 45);
+            this.btn_close.Size = new System.Drawing.Size(10, 14);
             this.btn_close.TabIndex = 4;
             this.btn_close.Text = "X";
             this.btn_close.UseVisualStyleBackColor = true;

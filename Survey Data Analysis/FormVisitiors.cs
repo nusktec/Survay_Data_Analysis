@@ -15,8 +15,9 @@ namespace Survey_Data_Analysis
 {
     public partial class FormVisitiors : Form
     {
+      
         //Writer class
-        XmlClassRW xmlc = new XmlClassRW("survey.db", "visitors");
+        XmlClassRW xmlc = new XmlClassRW(Splash_form.fpath, Splash_form.rootName);
 
         //reference main form here
         public Splash_form mainForm { get; set; }

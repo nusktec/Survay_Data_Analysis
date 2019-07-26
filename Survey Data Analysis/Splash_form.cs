@@ -13,6 +13,10 @@ namespace Survey_Data_Analysis
 {
     public partial class Splash_form : Form
     {
+        //static variables for global usage
+        static public String fpath = "survey.db";
+        static public String rootName = "visitors";
+
         public Splash_form()
         {
             InitializeComponent();
