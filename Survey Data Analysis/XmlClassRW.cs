@@ -57,6 +57,7 @@ namespace Survey_Data_Analysis
                     writer.WriteStartElement(rootName);
                     writer.WriteEndElement();
                     writer.Flush();
+                    err.ToString();
                 }
             }
         }
