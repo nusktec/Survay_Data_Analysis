@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Survey_Data_Analysis
 {
@@ -37,11 +39,13 @@ namespace Survey_Data_Analysis
             //submit data to db
             if (!checkData())
             {
-                MessageBox.Show("Please complete the survey form appropriately !", "Survey");
+                MessageBox.Show("Please complete the survey form appropriately !" + likes, "Survey");
+                writeData();
                 return;
             }
 
         }
+
         String name; // visitors name
         int likes = 0; //survey report as 1,2,3,4,5
         int age = 0; // age as number
@@ -50,7 +54,23 @@ namespace Survey_Data_Analysis
         int disa = 0; //disability
         private bool checkData()
         {
-
+            name = this.txtBoxName.Text;
+            age = (int)this.numAge.Value;
+            sex = this.comSex.SelectedIndex;
+            eth = this.comEth.SelectedIndex;
+            disa = this.checkDis.Checked ? 1 : 0;
+            //generate likes
+            foreach(Control c in this.boxSurvey.Controls)
+            {
+                if (c.GetType() == typeof(RadioButton))
+                {
+                    RadioButton rb = (RadioButton)c;
+                    if (rb.Checked)
+                    {
+                        likes = rb.TabIndex;
+                    }
+                }
+            }
             return false;
         }
 
@@ -61,6 +81,35 @@ namespace Survey_Data_Analysis
             Close();
         }
 
+        //XML Writter
+        public void writeData()
+        {
+           try
+            {
+                var filePath = "books.xml";
+                var xmlDoc = XDocument.Load(filePath);
+                var parentElement = new XElement("Student");
+                var firstNameElement = new XElement("FirstName", "Onuhe");
+                var lastNameElement = new XElement("LastName", "Ameh K");
+
+                parentElement.Add(firstNameElement);
+                parentElement.Add(lastNameElement);
+
+                var rootElement = xmlDoc.Element("School");
+                rootElement?.Add(parentElement);
+
+                xmlDoc.Save("books.xml");
+            }catch (Exception ex)
+            {
+                using (XmlWriter writer = XmlWriter.Create("books.xml"))
+                {
+                    writer.WriteStartElement("School");
+
+                    writer.WriteEndElement();
+                    writer.Flush();
+                }
+            }
+        }
  
     }
 }

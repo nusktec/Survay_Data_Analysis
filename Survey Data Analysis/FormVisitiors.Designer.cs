@@ -222,7 +222,7 @@
             this.radioButton3.Location = new System.Drawing.Point(18, 154);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(175, 29);
-            this.radioButton3.TabIndex = 0;
+            this.radioButton3.TabIndex = 3;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Neither Agree";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -233,7 +233,7 @@
             this.radioButton2.Location = new System.Drawing.Point(18, 98);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(100, 29);
-            this.radioButton2.TabIndex = 0;
+            this.radioButton2.TabIndex = 2;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Agree";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -244,7 +244,7 @@
             this.radioButton5.Location = new System.Drawing.Point(236, 98);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(214, 29);
-            this.radioButton5.TabIndex = 0;
+            this.radioButton5.TabIndex = 5;
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Strongly Disagree";
             this.radioButton5.UseVisualStyleBackColor = true;
@@ -255,7 +255,7 @@
             this.radioButton4.Location = new System.Drawing.Point(236, 48);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(129, 29);
-            this.radioButton4.TabIndex = 0;
+            this.radioButton4.TabIndex = 4;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Disagree";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -266,7 +266,7 @@
             this.radioButton1.Location = new System.Drawing.Point(18, 48);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(122, 29);
-            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabIndex = 1;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Strongly";
             this.radioButton1.UseVisualStyleBackColor = true;
