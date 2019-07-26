@@ -55,11 +55,22 @@ namespace Survey_Data_Analysis
             rd.Add("disa", disa);
             rd.Add("like", likes);
             xmlc.writeXmlData("visitor", rd);
-            MessageBox.Show("Survey recorded, Goodbye for today...", "Thank you !");
+            MessageBox.Show("Survey recorded, Gracious !...", "Thank you !");
             //clear data
             txtBoxName.Clear();
             numAge.Value = 0;
-            Close();
+            checkDis.Checked = false;
+            comSex.SelectedIndex = 0;
+            comEth.SelectedIndex = 0;
+            //clear radio button
+            foreach(Control c in this.boxSurvey.Controls)
+            {
+                if(c.GetType() == typeof(RadioButton))
+                {
+                    RadioButton clearRadios = (RadioButton)c;
+                    clearRadios.Checked = false;
+                }
+            }
         }
 
         String name; // visitors name

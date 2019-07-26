@@ -89,13 +89,14 @@
             this.btn_close.TabIndex = 4;
             this.btn_close.Text = "X";
             this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Visible = false;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // Splash_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1384, 698);
             this.Controls.Add(this.btn_close);
