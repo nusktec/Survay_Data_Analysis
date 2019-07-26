@@ -19,12 +19,12 @@ namespace Survey_Data_Analysis
         public FormManage()
         {
             InitializeComponent();
+            populateData(); //loading printing data
         }
 
         //Print form data
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            populateData();
             
         }
 
@@ -42,11 +42,13 @@ namespace Survey_Data_Analysis
                 //ready to read
                 DataTable dt = new DataTable();
                 dt.Clear();
+                dt.Columns.Add("S/N");
                 dt.Columns.Add("Name");
                 dt.Columns.Add("Sex");
                 dt.Columns.Add("Age");
                 dt.Columns.Add("Ethnic Group");
                 dt.Columns.Add("Disability");
+                dt.Columns.Add("Sculpture Like");
 
                 /*
                  *<name>RSC Byte() Limited</name>
@@ -66,6 +68,22 @@ namespace Survey_Data_Analysis
                     DModel md = new DModel();
                     foreach (XmlNode n in nodes.ChildNodes)
                     {
+                        //Calculations
+                        if (n.Name == "sex" && Int32.Parse(n.InnerText) == 1)
+                        {
+                            //count male
+                            male += 1;
+                        }
+                        if (n.Name == "like")
+                        {
+                            //likes
+                            likes += Int32.Parse(n.InnerText);
+                        }
+
+                        if (n.Name == "age")
+                            //count male
+                            total_age += Int32.Parse(n.InnerText);
+
                         if (n.Name == "name")
                             md.name = n.InnerText;
                         if (n.Name == "age")
@@ -78,11 +96,22 @@ namespace Survey_Data_Analysis
                             md.disa = int.Parse(n.InnerText);
                         if (n.Name == "like")
                             md.like = int.Parse(n.InnerText);
-
+                        md.sn = total_visitors;
+                       
                     }
                     //Pull in data availability
-                    object[] o = {md.name,md.sex,md.age,md.eth,md.disa};
+                    object[] o = {total_visitors,md.name,md.sex,md.age,md.eth,md.disa,md.like};
                     dt.Rows.Add(o);
+                    //Assign statistical data
+                    female = total_visitors - male;
+                    lbVisitor.Text = total_visitors.ToString();
+                    lbMaleTotal.Text = male.ToString();
+                    lbTotalFemale.Text = female.ToString();
+                    lbMaleTotal.Text = male.ToString();
+                    Decimal laverage = (likes/total_visitors);//likes average
+                    Decimal total_age_av = total_age / total_visitors; // age average
+                    lbLikesAve.Text = laverage.ToString();
+                    lbAgeAverage.Text = total_age_av.ToString();
                 }
                 dataView.DataSource = dt;
             }
@@ -93,12 +122,18 @@ namespace Survey_Data_Analysis
             }
            
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close(); //close this form
+        }
     }
 
     // data moddel
     class DModel
     {
         //public getter and setter
+        public int sn { get; set; }
         public String name { get; set; }
         public int age { get; set; }
         public String sex { get; set; }
