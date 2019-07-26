@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Collections;
 
 namespace Survey_Data_Analysis
 {
     public partial class FormVisitiors : Form
     {
+        //Writer class
+        XmlClassRW xmlc = new XmlClassRW("survey.db", "visitors");
+
         //reference main form here
         public Splash_form mainForm { get; set; }
 
@@ -39,17 +43,29 @@ namespace Survey_Data_Analysis
             //submit data to db
             if (!checkData())
             {
-                MessageBox.Show("Please complete the survey form appropriately !" + likes, "Survey");
-                writeData();
+                MessageBox.Show("Please complete the survey form appropriately !", "Survey");
                 return;
             }
-
+            //send to xml files
+            Dictionary<Object, Object> rd = new Dictionary<object, object>();
+            rd.Add("name", name);
+            rd.Add("age", age);
+            rd.Add("sex", sex);
+            rd.Add("eth", eth);
+            rd.Add("disa", disa);
+            rd.Add("like", likes);
+            xmlc.writeXmlData("visitor", rd);
+            MessageBox.Show("Survey recorded, Goodbye for today...", "Thank you !");
+            //clear data
+            txtBoxName.Clear();
+            numAge.Value = 0;
+            Close();
         }
 
         String name; // visitors name
         int likes = 0; //survey report as 1,2,3,4,5
         int age = 0; // age as number
-        int sex = 1; //sex (1=male, 2=female)
+        int sex = 0; //sex (1=male, 2=female)
         int eth = 0; //ethnicity
         int disa = 0; //disability
         private bool checkData()
@@ -71,7 +87,12 @@ namespace Survey_Data_Analysis
                     }
                 }
             }
-            return false;
+            //filter ddata needs
+            if(name=="" || age==0 || sex==0 || eth==0 || likes == 0)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -79,36 +100,6 @@ namespace Survey_Data_Analysis
             //close the visitors form only 
             //perform applied actions
             Close();
-        }
-
-        //XML Writter
-        public void writeData()
-        {
-           try
-            {
-                var filePath = "books.xml";
-                var xmlDoc = XDocument.Load(filePath);
-                var parentElement = new XElement("Student");
-                var firstNameElement = new XElement("FirstName", "Onuhe");
-                var lastNameElement = new XElement("LastName", "Ameh K");
-
-                parentElement.Add(firstNameElement);
-                parentElement.Add(lastNameElement);
-
-                var rootElement = xmlDoc.Element("School");
-                rootElement?.Add(parentElement);
-
-                xmlDoc.Save("books.xml");
-            }catch (Exception ex)
-            {
-                using (XmlWriter writer = XmlWriter.Create("books.xml"))
-                {
-                    writer.WriteStartElement("School");
-
-                    writer.WriteEndElement();
-                    writer.Flush();
-                }
-            }
         }
  
     }
